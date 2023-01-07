@@ -14,7 +14,7 @@ export default defineComponent({ name: 'MyButton', extends: Button, inheritAttrs
 import { computed } from 'vue'
 import { buttonProps } from './props'
 const props = defineProps(buttonProps)
-const getButtonClass = computed((): [any] => {
+const getButtonClass = computed((): Array<any> => {
   const { color, disabled } = props
   return [
     {
