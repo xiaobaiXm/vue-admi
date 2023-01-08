@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <MyButton>登录</MyButton>
-  </div>
+  <RouterView />
 </template>
 
 <script setup lang="ts"></script>

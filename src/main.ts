@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { setupRouter } from '@/router'
+import { router, setupRouter } from '@/router'
+import { setupRouterGuard } from './router/guard'
 import { setupStore } from '@/stores'
 import { registerGlobComponents } from '@/components'
 import { setupGlobDirectives } from '@/directives'
@@ -16,6 +17,8 @@ async function bootstrap(): Promise<void> {
   setupStore(app)
   // 配置 路由
   setupRouter(app)
+  // 配置路由守卫
+  setupRouterGuard(router)
   // 注册全局组件
   registerGlobComponents(app)
   // 注册全局指令

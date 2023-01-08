@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 
-import { store } from '..'
+import { store } from '@/stores'
 
 interface UserState {}
 
 export const useUserStore = defineStore({
-  id: 'user',
+  id: 'app-user',
   state: (): UserState => {
     return {}
   },

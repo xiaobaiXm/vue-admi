@@ -17,6 +17,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "experimentalDecorators": true,
+    "strictNullChecks": true,
     "lib": [
       "dom",
       "esnext"
