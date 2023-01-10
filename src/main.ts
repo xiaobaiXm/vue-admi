@@ -1,3 +1,5 @@
+import '@/design/index.less'
+import 'ant-design-vue/dist/antd.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import { router, setupRouter } from '@/router'
@@ -7,7 +9,6 @@ import { registerGlobComponents } from '@/components'
 import { setupGlobDirectives } from '@/directives'
 import { initAppConfigStore } from '@/logics/initAppConfig'
 import { setupI18n } from '@/locales/setupI18n'
-import 'ant-design-vue/dist/antd.css'
 
 async function bootstrap(): Promise<void> {
   const app = createApp(App)

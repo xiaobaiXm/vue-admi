@@ -1,15 +1,10 @@
 import { useAppProviderContext } from '@/components/Application'
 
-interface UseDesign {
-  prefixCls: string
-  prefixVar: string
-}
-
-export function useDesign(scope: string): UseDesign {
+export function useDesign(scope: string) {
   const values = useAppProviderContext()
   console.log(values)
   return {
-    prefixCls: `1`,
-    prefixVar: '1'
+    prefixCls: `${values.prefixCls}-${scope}`,
+    prefixVar: values.prefixCls
   }
 }

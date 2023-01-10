@@ -1,0 +1,10 @@
+@import (reference) '../color.less';
+
+@namespace: xiaobai;
+
+
+.bem(@n; @content) {
+  @{namespace}-@{n} {
+    @content();
+  }
+}

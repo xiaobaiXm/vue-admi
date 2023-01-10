@@ -1,6 +1,6 @@
 import { InjectionKey, Ref } from 'vue'
 
-import { useContext } from '@/hooks/core/useContext'
+import { createContext, useContext } from '@/hooks/core/useContext'
 
 export interface AppProviderContextProps {
   prefixCls: Ref<string>
@@ -9,6 +9,11 @@ export interface AppProviderContextProps {
 
 const key: InjectionKey<AppProviderContextProps> = Symbol()
 
+export function createAppProviderContext(context: AppProviderContextProps) {
+  return createContext<AppProviderContextProps>(context, key)
+}
+
 export function useAppProviderContext() {
+  console.log(useContext<AppProviderContextProps>(key))
   return useContext<AppProviderContextProps>(key)
 }

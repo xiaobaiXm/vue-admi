@@ -1,4 +1,5 @@
 import { RoleInfo } from '@/api/system/model/userModel'
+import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 
 export interface UserInfo {
   userId: string | number
@@ -13,4 +14,11 @@ export interface UserInfo {
 export interface LockInfo {
   pwd?: string | undefined
   isLock?: boolean
+}
+
+export interface BeforeMiniState {
+  menuCollapsed?: boolean
+  menuSplit?: boolean
+  menuMode?: MenuModeEnum
+  menuType?: MenuTypeEnum
 }

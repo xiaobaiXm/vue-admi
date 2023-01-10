@@ -63,7 +63,7 @@ export const ERROR_LOG_ROUTE: AppRouteModule = {
     {
       path: 'list',
       name: 'ErrorLogList',
-      component: () => import('@/views/sys/error-log/index.vue'),
+      component: () => import('@/views/system/error-log/index.vue'),
       meta: {
         // title: t('routes.basic.errorLogList'),
         hideBreadcrumb: true,

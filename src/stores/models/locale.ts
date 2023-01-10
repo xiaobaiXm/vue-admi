@@ -22,7 +22,11 @@ export const useLocaleStore = defineStore({
     }
   },
   actions: {},
-  getters: {}
+  getters: {
+    getLocale(): LocaleType {
+      return this.localeInfo?.locale ?? 'zh_CN'
+    }
+  }
 })
 
 export function useLocaleStoreWithOut() {

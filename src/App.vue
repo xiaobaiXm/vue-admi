@@ -1,7 +1,9 @@
 <template>
-  <RouterView />
+  <AppProvider>
+    <RouterView />
+  </AppProvider>
 </template>
 
-<script setup lang="ts"></script>
-
-<style lang="less" scoped></style>
+<script setup lang="ts">
+import { AppProvider } from '@/components/Application'
+</script>
