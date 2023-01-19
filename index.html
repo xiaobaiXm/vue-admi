@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn" id="html-root">
 
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vite App</title>
+  <link rel="icon" href="/favicon.ico">
+  <title>
+    <%=title %>
+  </title>
 </head>
 
 <body>
+  <script>
+    (() => {
+      const htmlRoot = document.getElementById("html-root")
+      const theme = window.localStorage.getItem('__APP__DARK__MODE')
+    })()
+  </script>
   <div id="app"></div>
   <script type="module" src="/src/main.ts"></script>
 </body>

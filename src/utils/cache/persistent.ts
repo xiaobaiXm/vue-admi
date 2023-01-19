@@ -83,6 +83,19 @@ export class Persistent {
 
 // 监听本地储存事件 监听储存发生变化
 window.addEventListener('storage', function storageChange(e: any): void {
+  // const { key, newValue, oldValue } = e
+  // if (!key) {
+  //   Persistent.clearAll()
+  //   return
+  // }
+  // if (!!newValue && !!oldValue) {
+  //   if (APP_LOCAL_CACHE_KEY === key) {
+  //     Persistent.clearLocal()
+  //   }
+  //   if (APP_SESSION_CACHE_KEY === key) {
+  //     Persistent.clearSession()
+  //   }
+  // }
   console.log(e)
 })
 

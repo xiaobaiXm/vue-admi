@@ -1,3 +1,6 @@
+import 'virtual:windi-base.css'
+import 'virtual:windi-components.css'
+import 'virtual:windi-utilities.css'
 import '@/design/index.less'
 import 'ant-design-vue/dist/antd.css'
 import { createApp } from 'vue'

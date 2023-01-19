@@ -32,9 +32,8 @@ export default defineComponent({
     function handleRestoreState() {
       if (!unref(isMobile)) {
         isSetState.value = true
-        const {
-          menuSetting: { type: menuType, mode: menuMode, collapsed: menuCollapsed, split: menuSplit }
-        } = appStore.getProjectConfig
+        const { menuSetting } = appStore.getProjectConfig
+        const { type: menuType, mode: menuMode, collapsed: menuCollapsed, split: menuSplit } = menuSetting
         appStore.setProjectConfig({
           menuSetting: { type: MenuTypeEnum.SIDEBAR, mode: MenuModeEnum.INLINE, split: false }
         })

@@ -1,9 +1,9 @@
 export const TOKEN_KEY = 'TOKEN_'
 
-// 基本全局本地键
+// 基本全局local键
 export const APP_LOCAL_CACHE_KEY = 'COMMON__LOCAL__KEY__'
 
-// 基本全局会话键
+// 基本全局session键
 export const APP_SESSION_CACHE_KEY = 'COMMON__SESSION__KEY__'
 
 export const LOCALE_KEY = 'LOCALE__'

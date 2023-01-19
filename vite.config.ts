@@ -1,5 +1,5 @@
 import type { UserConfig, ConfigEnv } from 'vite'
-import { loadEnv } from 'vite'
+import { loadEnv, defineConfig } from 'vite'
 import dayjs from 'dayjs'
 import pkg from './package.json'
 import { resolve } from 'path'
@@ -8,6 +8,8 @@ import { createProxy } from './build/vite/proxy'
 import { OUTPUT_DIR } from './build/constant'
 import { generateModifyVars } from './build/generate/generateModifyVars'
 import { createVitePlugins } from './build/vite/plugin'
+import AutoImport from 'unplugin-auto-import/vite'
+
 const { dependencies, devDependencies, name, version } = pkg
 const __APP_INFO__ = {
   pkg: { dependencies, devDependencies, name, version },
@@ -16,7 +18,7 @@ const __APP_INFO__ = {
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir)
 }
-export default ({ command, mode }: ConfigEnv): UserConfig => {
+export default defineConfig(({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
   const env = loadEnv(mode, root)
   const viteEnv = wrapperEnv(env)
@@ -80,4 +82,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       ]
     }
   }
+})
+
+export function autoImport() {
+  return AutoImport({
+    imports: ['vue', 'vue-router'],
+    dirs: ['./src/stores/models'],
+    dts: './src/auto-import.d.ts'
+  })
 }
