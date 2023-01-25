@@ -28,7 +28,6 @@ export default defineComponent({
     })
     const { prefixCls } = toRefs(props)
     createAppProviderContext({ prefixCls, isMobile })
-
     function handleRestoreState() {
       if (!unref(isMobile)) {
         isSetState.value = true

@@ -21,7 +21,7 @@ export function useI18n(namespace?: string): {
   }
   if (!i18n) return normalFn
   const { t, ...methods } = i18n.global
-  const tFn: I18nGlobalTranslation = (key: string, ...arg: any[]) => {
+  const tFn: I18nGlobalTranslation = (key: string, ...arg: any[]): string => {
     if (!key) return ''
     if (!key.includes('.') && !namespace) return key
     return t(getKey(namespace, key), ...(arg as I18nTranslationRestParameters))

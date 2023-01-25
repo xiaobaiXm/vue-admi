@@ -20,6 +20,13 @@ export const useLocaleStore = defineStore({
     setLocaleInfo(infio: Partial<LocaleSetting>): void {
       this.localeInfo = { ...this.localeInfo, ...infio }
       ls.set(LOCALE_KEY, this.localeInfo)
+    },
+    // 初始化语言信息 并从本地加载语言信息
+    initLocale(): void {
+      this.setLocaleInfo({
+        ...localeSetting,
+        ...this.localeInfo
+      })
     }
   },
   getters: {

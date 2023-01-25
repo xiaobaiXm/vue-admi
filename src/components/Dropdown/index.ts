@@ -1,4 +1,4 @@
 import { withInstall } from '@/utils'
-import dropdown from './src/index.vue'
-export * from './src/type'
+import dropdown from './src/Dropdown.vue'
+export * from './src/typing'
 export const Dropdown = withInstall(dropdown)

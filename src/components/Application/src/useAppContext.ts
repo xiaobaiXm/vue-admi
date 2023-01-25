@@ -14,6 +14,5 @@ export function createAppProviderContext(context: AppProviderContextProps) {
 }
 
 export function useAppProviderContext() {
-  console.log(useContext<AppProviderContextProps>(key))
   return useContext<AppProviderContextProps>(key)
 }

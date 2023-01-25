@@ -45,25 +45,11 @@
     "tinymce": "^5.10.3",
     "vditor": "^3.8.13",
     "vue": "^3.2.33",
-    "vue-i18n": "^9.1.9",
+    "vue-i18n": "9.1.9",
     "vue-json-pretty": "^2.0.6",
     "vue-router": "^4.0.14",
     "vue-types": "^4.1.1",
-    "xlsx": "^0.18.5",
-    "sequelize": "^6.20.1",
-    "joi": "^17.6.0",
-    "jsonwebtoken": "^8.5.1",
-    "koa": "^2.13.4",
-    "koa-body": "^5.0.0",
-    "koa-parameter": "^3.0.1",
-    "koa-router": "^10.1.1",
-    "koa-static": "^5.0.0",
-    "koa2-cors": "^2.0.6",
-    "mysql2": "^2.3.3",
-    "bcryptjs": "^2.4.3",
-    "core-js": "^3.8.3",
-    "csv-parser": "^3.0.0",
-    "dotenv": "^16.0.1"
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
@@ -123,6 +109,7 @@
     "stylelint-order": "^5.0.0",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3",
+    "unplugin-auto-import": "^0.12.1",
     "vite": "^2.9.5",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-html": "^3.2.0",
@@ -170,5 +157,10 @@
     "commitizen": {
       "path": "node_modules/cz-git"
     }
+  },
+  "resolutions": {
+    "//": "Used to install imagemin dependencies, because imagemin may not be installed in China. If it is abroad, you can delete it",
+    "bin-wrapper": "npm:bin-wrapper-china",
+    "rollup": "^2.72.0"
   }
 }

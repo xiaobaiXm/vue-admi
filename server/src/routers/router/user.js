@@ -5,24 +5,14 @@ const router = new Router({
 })
 
 // controller
-const {
-  login,
-  getInfo
-} = require('../../controller/user.controller.js')
+const { login, getInfo } = require('../../controller/user.controller.js')
 
 // middleware
-const {
-  verifyLogin,
-  validator
-} = require('../../middleware/user.middleware')
+const { verifyLogin, validator } = require('../../middleware/user.middleware')
 
-const {
-  auth
-} = require('../../middleware/auth.middleware')
+const { auth } = require('../../middleware/auth.middleware')
 
 // router
-router
-  .post('/login', validator, verifyLogin, login)
-  .get('/', auth, getInfo)
+router.post('/login', validator, verifyLogin, login).get('/', auth, getInfo)
 
 module.exports = router

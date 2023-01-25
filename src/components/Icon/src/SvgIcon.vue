@@ -7,15 +7,14 @@
 import type { CSSProperties } from 'vue'
 import { computed } from 'vue'
 import { useDesign } from '@/hooks/web/useDesign'
-interface Props {
+type Props = {
   prefix?: string
   name: string
   size: string | number
-  spin: boolean
+  spin?: boolean
 }
 const { prefixCls } = useDesign('svg-icon')
 const props = withDefaults(defineProps<Props>(), { prefix: 'icon', size: 16, spin: false })
-console.log('svgIcon', props)
 const symbolId = computed((): string => `#${props.prefix}-${props.name}`)
 const getStyle = computed((): CSSProperties => {
   const { size } = props

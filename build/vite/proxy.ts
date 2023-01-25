@@ -10,6 +10,10 @@ export function createProxy(list: ProxyList = []) {
     ret[prefix] = {
       target: target,
       changeOrigin: true,
+      cookiePathRewrite: {
+        '/basic-api': '',
+        '/upload': ''
+      },
       ws: true,
       rewrite: (path: string) => path.replace(new RegExp(`${prefix}`), ''),
       ...(isHttps ? { secure: false } : {})

@@ -1,6 +1,6 @@
 import type { LocaleType } from '/#/config'
 import { set } from 'lodash-es'
-export const LoadLocalePool: LocaleType[] = []
+export const loadLocalePool: LocaleType[] = []
 export function genMessage(langs: Record<string, Record<string, any>>, prefix = 'lang') {
   const obj: Recordable = {}
   Object.keys(langs).forEach((key: string) => {
@@ -29,5 +29,5 @@ export function setHtmlPageLang(locale: LocaleType) {
   document.querySelector('html')?.setAttribute('lang', locale)
 }
 export function setLoadLocalePool(callback: (loadLocalePool: LocaleType[]) => void) {
-  callback(LoadLocalePool)
+  callback(loadLocalePool)
 }

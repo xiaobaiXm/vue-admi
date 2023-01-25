@@ -1,21 +1,16 @@
 <template>
-  <div :class="['logo', getAppLogoClass]" @click="goHome">
-    <img src="@/assets/logo.png" />
-    <div :class="['md:opacity-100', 'ml-2', getTitleClass]">{{ title }}</div>
+  <div :class="['logo', 'enter-x', getAppLogoClass]" @click="goHome">
+    <img src="../../..//assets/images/logo.png" />
+    <div :class="['md:opacity-100', 'ml-4', getTitleClass]" v-if="showTitle">{{ title }}</div>
   </div>
 </template>
-
 <script setup lang="ts">
 import { useDesign } from '@/hooks/web/useDesign'
 import { useGlobalSetting } from '@/hooks/settings'
-type Props = {
-  theme: string | boolean | Function
-  showTitle: boolean
-  alwaysShowTitle?: boolean
-}
-const props = withDefaults(defineProps<Props>(), {
-  theme: (v: string) => ['light', 'dark'].includes(v),
-  showTitle: true
+const props = defineProps({
+  theme: { type: String, validator: (v: string) => ['light', 'dark'].includes(v) },
+  showTitle: { type: Boolean, default: true },
+  alwaysShowTitle: { type: Boolean }
 })
 const { title } = useGlobalSetting()
 const { prefixCls } = useDesign('app-logo')
@@ -34,9 +29,10 @@ const goHome = (): void => {
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-app-logo';
 .@{prefix-cls} {
+  width: 100%;
   display: flex;
   align-items: center;
-  margin-top: 12px;
+  margin-top: 4px;
   padding-left: 7px;
   cursor: pointer;
   transition: all 0.2s ease;

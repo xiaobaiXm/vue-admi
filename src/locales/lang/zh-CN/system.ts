@@ -61,7 +61,7 @@ export default {
   },
   login: {
     backSignIn: '返回',
-    signInFormTitle: '登录',
+    signInFormTitle: '登录系统',
 
     loginButton: '登录',
 

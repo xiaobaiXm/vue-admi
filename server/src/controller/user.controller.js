@@ -4,20 +4,15 @@ const { userLoginError, getUserInfoError } = require('../constant/err.type')
 const { JWT_SECRET, JWT_VALIDITY } = require('../config/config.default')
 
 class UserController {
-  // register
-  async register (ctx) {
-
-  }
-
   // login
-  async login (ctx) {
+  async login(ctx) {
     const { username } = ctx.request.body
     try {
       const { password, ...res } = await getUserInfo({ username })
       ctx.body = {
         code: 200,
         message: '登录成功',
-        data: {
+        result: {
           token: JWT.sign(res, JWT_SECRET, { expiresIn: JWT_VALIDITY })
         }
       }
@@ -26,9 +21,8 @@ class UserController {
       ctx.app.emit('error', userLoginError, ctx)
     }
   }
-
   // get user info
-  async getInfo (ctx) {
+  async getInfo(ctx) {
     const { id } = ctx.state.user
     try {
       ctx.body = {

@@ -19,16 +19,11 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean): PluginOpt
   const { VITE_USE_IMAGEMIN, VITE_USE_MOCK, VITE_LEGACY, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } =
     viteEnv
   const vitePlugins: (PluginOption | PluginOption[])[] = [
-    // have to
     vue(),
-    // have to
     vueJsx(),
-    // support name
-    //vueSetupExtend(),
     VitePluginCertificate({
       source: 'coding'
     }),
-    // auto import
     autoImport()
   ]
   // vite-plugin-windicss
