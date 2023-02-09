@@ -64,7 +64,7 @@ const loginHandler = async (): Promise<undefined> => {
     } catch (error) {
       createErrorModal({
         title: t('system.api.errorTip'),
-        content: (error as unknown as Error) || t('system.api.networkExceptionMsg'),
+        content: (error as unknown as Error).message || t('system.api.networkExceptionMsg'),
         getContainer: () => document.querySelector(`.${prefixCls}`) || document.body
       })
     } finally {

@@ -32,7 +32,8 @@ export const useUserStore = defineStore({
         const { goHome = true, mode, ...loginData } = data
         const result = await reqLoginApi(loginData, mode)
         const { token } = result
-        this.setToken(token)
+        // this.setToken(token)
+        console.log(token)
         return this.afterLoginAction(goHome)
       } catch (error) {
         return Promise.reject(error)

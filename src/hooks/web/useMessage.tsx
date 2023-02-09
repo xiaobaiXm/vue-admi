@@ -74,7 +74,7 @@ function createSuccessModal(options: ModalOptionsPartial) {
   return Modal.success(createModalOptions(options, 'success'))
 }
 function createErrorModal(options: ModalOptionsPartial) {
-  return Modal.error(createModalOptions(options, 'close'))
+  return Modal.error(createModalOptions(options, 'error'))
 }
 function createInfoModal(options: ModalOptionsPartial) {
   return Modal.info(createModalOptions(options, 'info'))

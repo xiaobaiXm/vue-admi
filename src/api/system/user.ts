@@ -2,10 +2,15 @@ import type { ErrorMessageMode } from '/#/axios'
 import type { LoginData, LoginResultModel, GetUserInfoModel } from './model/userModel'
 import { request } from '@/utils/http'
 enum Api {
+  Register = '/user/register',
   Login = '/user/login',
   Logout = '/user/logout',
   GetUserInfo = '/user/',
   UploadUserAvatar = '/upload/user/avatar'
+}
+// register api
+export const reqRegisterApi = () => {
+  return request.post({ url: Api.Register })
 }
 // login api
 export const reqLoginApi = (userInfo: LoginData, mode: ErrorMessageMode = 'modal') => {

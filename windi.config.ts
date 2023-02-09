@@ -46,7 +46,7 @@ function createEnterPlugin(maxOutput = 6) {
       }
     }
   }
-  console.log(createCss)
+
   const handler = ({ addBase }) => {
     const addRawCss = {}
     for (let index = 1; index < maxOutput; index++) {
