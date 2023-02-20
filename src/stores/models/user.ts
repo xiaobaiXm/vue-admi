@@ -2,12 +2,17 @@ import type { UserInfo } from '/#/store'
 import type { ErrorMessageMode } from '/#/axios'
 import type { GetUserInfoModel, LoginData } from '@/api/system/model/userModel'
 import { defineStore } from 'pinia'
+import { RouteRecordRaw } from 'vue-router'
 import { store } from '@/stores'
 import { RoleEnum } from '@/enums/roleEnum'
 import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '@/enums/cacheEnum'
 import { getAuthCache, setAuthCache } from '@/utils/auth'
-import { reqLoginApi, reqGetUserInfoApi } from '@/api/system/user'
+import { reqLoginApi, reqGetUserInfoApi, reqLogoutApi } from '@/api/system/user'
 import { isArray } from '@/utils/is'
+import { usePermissionStoreWithOut } from './permission'
+import { router } from '@/router'
+import { PageEnum } from '../../enums/pageEnum'
+import { PAGE_NOT_FOUND_ROUTE } from '@/router/routes/basic'
 interface UserState {
   userInfo: Nullable<UserInfo>
   token?: string
@@ -17,23 +22,20 @@ interface UserState {
 }
 export const useUserStore = defineStore({
   id: 'app-user',
-  state: (): UserState => {
-    return {
-      userInfo: null,
-      token: undefined,
-      roleList: [],
-      sessionTimeout: false,
-      lastUpdateTime: 0
-    }
-  },
+  state: (): UserState => ({
+    userInfo: null,
+    token: undefined,
+    roleList: [],
+    sessionTimeout: false,
+    lastUpdateTime: 0
+  }),
   actions: {
     async login(data: LoginData & { goHome?: boolean; mode: ErrorMessageMode }): Promise<GetUserInfoModel | null> {
       try {
         const { goHome = true, mode, ...loginData } = data
         const result = await reqLoginApi(loginData, mode)
         const { token } = result
-        // this.setToken(token)
-        console.log(token)
+        this.setToken(token)
         return this.afterLoginAction(goHome)
       } catch (error) {
         return Promise.reject(error)
@@ -42,7 +44,21 @@ export const useUserStore = defineStore({
     async afterLoginAction(goHome?: boolean): Promise<GetUserInfoModel | null> {
       if (!this.getToken) return null
       const userInfo = await this.getUserInfoAction()
-      // ...重置路由信息
+      const sessionTimeout = this.sessionTimeout
+      if (sessionTimeout) {
+        this.setSessionTimeout(false)
+      } else {
+        const permissionStore = usePermissionStoreWithOut()
+        if (!permissionStore.isDynamicAddedRoute) {
+          const routes = await permissionStore.buildRoutesAction()
+          routes.forEach((route) => {
+            router.addRoute(route as unknown as RouteRecordRaw)
+          })
+          router.addRoute(PAGE_NOT_FOUND_ROUTE as unknown as RouteRecordRaw)
+          permissionStore.setDynamicAddedRoute(true)
+        }
+      }
+      goHome && (await router.replace(userInfo?.home_path || PageEnum.BASE_HOME))
       return userInfo
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
@@ -71,7 +87,23 @@ export const useUserStore = defineStore({
       this.roleList = roleList
       setAuthCache(ROLES_KEY, roleList)
     },
-    logout(goLogin = false) {}
+    setSessionTimeout(flag: boolean): void {
+      this.sessionTimeout = flag
+    },
+    async logout(goLogin = false) {
+      if (this.token) {
+        try {
+          await reqLogoutApi()
+        } catch (error) {
+          console.log('注销登录失败')
+        }
+      }
+      // 删除所有用户信息 跳转到登录页
+      this.setToken(undefined)
+      this.setSessionTimeout(false)
+      this.setUserInfo(null)
+      goLogin && router.push(PageEnum.BASE_LOGIN)
+    }
   },
   getters: {
     getUserInfo(): UserInfo {
@@ -80,7 +112,9 @@ export const useUserStore = defineStore({
     getToken(): string {
       return this.token || getAuthCache<string>(TOKEN_KEY)
     },
-    getRoleList() {},
+    getRoleList(): RoleEnum[] {
+      return this.roleList.length > 0 ? this.roleList : getAuthCache<RoleEnum[]>(ROLES_KEY)
+    },
     getSettionsTimeout(): boolean {
       return !!this.sessionTimeout
     },

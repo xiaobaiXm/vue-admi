@@ -58,7 +58,7 @@ const loginHandler = async (): Promise<undefined> => {
       userInfo &&
         notification.success({
           message: t('system.login.loginSuccessTitle'),
-          description: `${t('system.login.loginSuccessDesc')}: ${userInfo.realName}`,
+          description: `${t('system.login.loginSuccessDesc')}: ${userInfo.real_name}`,
           duration: 3
         })
     } catch (error) {

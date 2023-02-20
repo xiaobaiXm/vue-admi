@@ -2,12 +2,12 @@ import { RoleInfo } from '@/api/system/model/userModel'
 import { MenuModeEnum, MenuTypeEnum } from '@/enums/menuEnum'
 
 export interface UserInfo {
-  userId: string | number
+  id: string | number
   username: string
-  realName: string
+  real_name: string
   avatar: string
   desc?: string
-  homePath?: string
+  home_path?: string
   roles: RoleInfo[]
 }
 

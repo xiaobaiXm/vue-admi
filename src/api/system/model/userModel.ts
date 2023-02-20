@@ -1,5 +1,5 @@
 export interface RoleInfo {
-  roleName: string
+  role_name: string
   value: string
 }
 export interface LoginData {
@@ -7,15 +7,16 @@ export interface LoginData {
   password: string
 }
 export interface LoginResultModel {
-  userId: string | number
+  user_id: string | number
   token: string
   role: RoleInfo
 }
 export interface GetUserInfoModel {
   roles: RoleInfo[]
-  userId: string | number
+  id: string | number
   username: string
-  realName: string
+  real_name: string
   avatar: string
   desc?: string
+  home_path?: string
 }

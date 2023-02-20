@@ -55,6 +55,8 @@ declare global {
   const useLink: typeof import('vue-router')['useLink']
   const useLocaleStore: typeof import('./stores/models/locale')['useLocaleStore']
   const useLocaleStoreWithOut: typeof import('./stores/models/locale')['useLocaleStoreWithOut']
+  const useMultipleTabStore: typeof import('./stores/models/multipleTab')['useMultipleTabStore']
+  const useMultipleTabStoreWithOut: typeof import('./stores/models/multipleTab')['useMultipleTabStoreWithOut']
   const usePermissionStore: typeof import('./stores/models/permission')['usePermissionStore']
   const usePermissionStoreWithOut: typeof import('./stores/models/permission')['usePermissionStoreWithOut']
   const useRoute: typeof import('vue-router')['useRoute']

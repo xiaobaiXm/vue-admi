@@ -1,4 +1,5 @@
 import type { App, Plugin, Component } from 'vue'
+import type { RouteLocationNormalizedLoaded, RouteRecordNormalized } from 'vue-router'
 import { cloneDeep } from 'lodash-es'
 
 import { isObject } from './is'
@@ -34,3 +35,19 @@ export function setObjToUrlParams(baseUrl: string, obj: any): string {
   parameters = parameters.replace(/^&/, '')
   return /\?$/.test(baseUrl) ? baseUrl + parameters : baseUrl.replace(/\/?$/, '?') + parameters
 }
+
+export function getRawRoute(route: RouteLocationNormalizedLoaded): RouteLocationNormalizedLoaded {
+  if (!route) return route
+  const { matched, ...opt } = route
+  return {
+    ...opt,
+    matched: (matched
+      ? matched.map((item) => ({
+          meta: item.meta,
+          name: item.name,
+          path: item.path
+        }))
+      : undefined) as RouteRecordNormalized[]
+  }
+}
+export const noop = () => {}

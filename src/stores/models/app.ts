@@ -1,4 +1,5 @@
 import type { BeforeMiniState } from '/#/store'
+import type { MultiTabsSetting, TransitionSetting } from '/#/config'
 import { defineStore } from 'pinia'
 import { store } from '@/stores'
 import { Persistent } from '@/utils/cache/persistent'
@@ -13,6 +14,7 @@ interface AppState {
   projectConfig: ProjectConfig | null
   beforeMiniInfo: BeforeMiniState
 }
+let timeId: TimeoutHandle
 export const useAppStore = defineStore({
   id: 'app',
   state: (): AppState => {
@@ -34,6 +36,20 @@ export const useAppStore = defineStore({
     },
     setBeforeMiniInfo(state: BeforeMiniState): void {
       this.beforeMiniInfo = state
+    },
+    setProjectLoading(loading: boolean): void {
+      this.pageLoading = loading
+    },
+    async setPageLoadingAction(loading: boolean): Promise<void> {
+      if (loading) {
+        clearTimeout(timeId)
+        timeId = setTimeout(() => {
+          this.setProjectLoading(loading)
+        }, 50)
+      } else {
+        this.setProjectLoading(loading)
+        clearTimeout(timeId)
+      }
     }
   },
   getters: {
@@ -48,6 +64,12 @@ export const useAppStore = defineStore({
     },
     getBeforeMiniInfo(): BeforeMiniState {
       return this.beforeMiniInfo
+    },
+    getTransitionSetting(): TransitionSetting {
+      return this.projectConfig?.transitionSetting as TransitionSetting
+    },
+    getMultiTabsSetting(): MultiTabsSetting {
+      return this.projectConfig?.multiTabsSetting as MultiTabsSetting
     }
   }
 })
