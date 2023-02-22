@@ -6,8 +6,8 @@
           getTransitionName({
             route,
             openCache,
-            enableTransition: getEnableTransition,
             cacheTabs: getCacheTabList,
+            enableTransition: getEnableTransition,
             def: getBasicTransition
           })
         "
@@ -15,7 +15,7 @@
         appear
       >
         <keep-alive v-if="openCache" :include="getCacheTabList">
-          <Component :is="Component" :key="route.fullPath" />
+          <component :is="Component" :key="route.fullPath" />
         </keep-alive>
         <div v-else :key="route.name as string">
           <component :is="Component" :key="route.fullPath" />
@@ -26,10 +26,10 @@
 </template>
 
 <script setup lang="ts">
-import getTransitionName from './transition'
 import { useRootSetting } from '@/hooks/settings/useRootSetting'
 import { useTransitionSetting } from '@/hooks/settings/useTransitionSetting'
 import { useMultipleTabSetting } from '@/hooks/settings/useMultipleTabSetting'
+import getTransitionName from './transition'
 const tabStore = useMultipleTabStore()
 const { getOpenKeepAlive } = useRootSetting()
 const { getBasicTransition, getEnableTransition } = useTransitionSetting()

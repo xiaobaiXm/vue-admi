@@ -1,17 +1,26 @@
 <template>
   <div :class="['logo', 'enter-x', getAppLogoClass]" @click="goHome">
     <img src="../../..//assets/images/logo.png" />
-    <div :class="['md:opacity-100', 'ml-4', getTitleClass]" v-if="showTitle">{{ title }}</div>
+    <div :style="{ fontSize }" :class="['md:opacity-100', 'ml-4', getTitleClass]" v-if="showTitle">
+      {{ title }}
+    </div>
   </div>
 </template>
 <script setup lang="ts">
 import { useDesign } from '@/hooks/web/useDesign'
 import { useGlobalSetting } from '@/hooks/settings'
-const props = defineProps({
-  theme: { type: String, validator: (v: string) => ['light', 'dark'].includes(v) },
-  showTitle: { type: Boolean, default: true },
-  alwaysShowTitle: { type: Boolean }
-})
+const props = withDefaults(
+  defineProps<{
+    theme: string
+    showTitle: boolean
+    alwaysShowTitle?: boolean
+    fontSize: string
+  }>(),
+  {
+    showTitle: true,
+    fontSize: '16px'
+  }
+)
 const { title } = useGlobalSetting()
 const { prefixCls } = useDesign('app-logo')
 const getAppLogoClass = computed(() => [prefixCls, props.theme])

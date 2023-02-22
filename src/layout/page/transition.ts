@@ -6,7 +6,7 @@ export interface DefaultContext {
 }
 export default function getTransitionName({
   route,
-  opentCache,
+  openCache,
   cacheTabs,
   enableTransition,
   def
@@ -20,8 +20,8 @@ export default function getTransitionName({
   const isInCache = cacheTabs.includes(route.name as string)
   const transitionName = 'fade-slide'
   let name: string | undefined = transitionName
-  if (opentCache) {
+  if (openCache) {
     name = isInCache && route.meta.loaded ? transitionName : undefined
   }
-  return name
+  return name || (route.meta.transitionName as string) || def
 }

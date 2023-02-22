@@ -1,7 +1,6 @@
 export enum MenuTypeEnum {
   // left menu
   SIDEBAR = 'sidebar',
-
   MIX_SIDEBAR = 'mix-sidebar',
   // mixin menu
   MIX = 'mix',
@@ -21,7 +20,7 @@ export enum TriggerEnum {
 
 export type Mode = 'vertical' | 'vertical-right' | 'horizontal' | 'inline'
 
-// menu mode
+// 菜单模式
 export enum MenuModeEnum {
   VERTICAL = 'vertical',
   HORIZONTAL = 'horizontal',
@@ -29,7 +28,7 @@ export enum MenuModeEnum {
   INLINE = 'inline'
 }
 
-export enum MenuSplitTyeEnum {
+export enum MenuSplitTypeEnum {
   NONE,
   TOP,
   LEFT
@@ -40,7 +39,7 @@ export enum TopMenuAlignEnum {
   START = 'start',
   END = 'end'
 }
-
+// 触发条件
 export enum MixSidebarTriggerEnum {
   HOVER = 'hover',
   CLICK = 'click'

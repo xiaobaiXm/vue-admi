@@ -63,7 +63,7 @@ const setting: ProjectConfig = {
   menuSetting: {
     // 侧边菜单栏背景颜色
     bgColor: '',
-    //  是否修复左侧菜单
+    // 是否修复左侧菜单
     fixed: true,
     // 菜单崩溃
     collapsed: false,

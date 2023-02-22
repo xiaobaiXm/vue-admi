@@ -1,8 +1,8 @@
 <template>
   <Layout :class="[prefixCls]">
     <LayoutFeatrues />
-    <LayoutHeader />
-    <Layout :class="[layoutClass]">
+    <LayoutHeader fixed v-if="getShowFullHeaderRef" />
+    <Layout :class="layoutClass">
       <LayoutSideBar />
       <Layout :class="[`${prefixCls}-main`]">
         <LayoutMultipleHeader />
@@ -20,11 +20,13 @@ import LayoutContent from './components/Content/index.vue'
 import { computed } from 'vue'
 import { Layout } from 'ant-design-vue'
 import { useDesign } from '@/hooks/web/useDesign'
+import { useHeaderSetting } from '@/hooks/settings/useHeaderSetting'
 import createAsyncComponent from '@/utils/factory/createAsyncComponent'
 const LayoutFeatrues = createAsyncComponent(() => import('./components/Feature/index.vue'))
 const LayoutFooter = createAsyncComponent(() => import('./components/Footer/index.vue'))
 const { prefixCls } = useDesign('default-layout')
-const layoutClass = computed(() => {
+const { getShowFullHeaderRef } = useHeaderSetting()
+const layoutClass = computed((): string[] => {
   const cls: string[] = ['ant-layout']
   return cls
 })

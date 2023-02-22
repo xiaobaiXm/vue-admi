@@ -49,7 +49,7 @@
     "build/**/*.d.ts",
     "mock/**/*.ts",
     "vite.config.ts"
-, "src/hooks/web/useMessage.tsx"  ],
+  ],
   "exclude": [
     "node_modules",
     "tests/server/**/*.ts",
